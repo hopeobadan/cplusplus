@@ -1,0 +1,120 @@
+// ConsoleApplication6.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <ctime>
+#include <cstdlib>
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int main()
+{
+	//OBADAN BANK LTD
+	string name;
+	string defacctNum = "123456";
+	string acctNum;
+	int defacctPin = 1357;
+	int acctPin;
+	double acctBal;
+	double defacctBal = 100.59;
+	int withdraw;
+	int deposit;
+	int check;
+	int yo;
+
+
+	cout << "|----------------------------------------------------------------------------------|" << endl;
+	cout << "|Hello customer, welcome to Obadan Bank. Do you already have an account with us?|" << endl;
+	cout << "|----------------------------------------------------------------------------------|" << endl;
+	cout << "|----------------------------------------------------------------------------------|" << endl;
+	cout << "|Enter 1 if you have an account or 2 if you want to create a new one.|" << endl;
+	cin >> check;
+
+
+	if (check == 1) {
+		cout << "Enter account number: ";
+		cin >> acctNum;
+		while (acctNum != defacctNum) {
+			cout << "Wrong account number not recognized try again: ";
+			cin >> acctNum;
+		}
+		if (acctNum == defacctNum) {
+			cout << "Enter your pin: ";
+			cin >> acctPin;
+			while (acctPin != defacctPin) {
+				cout << "Wrong pin please enter it again: ";
+				cin >> acctPin;
+			}
+			if (acctPin == defacctPin) {
+				cout << "You have $" << defacctBal << " in you account." << endl;
+				int check2;
+
+				cout << "Would you like to deposit or withdraw? Press 1 to deposit, 2 to withdraw or any other key to exit." << endl;
+				cin >> check2;
+				if (check2 == 1) {
+					cout << "Enter the amount you want to deposit.: " << endl;
+					cin >> deposit;
+					cout << "You deposited $" << deposit << ".";
+					defacctBal += deposit;
+					cout << "Your account balance is now $" << defacctBal << "." << endl;
+					
+
+				}
+				else if (check2 == 2) {
+					cout << "Enter amount you want to withdraw." << endl;
+					cin >> withdraw;
+					while (withdraw > defacctBal) {
+						cout << "You can't withdraw more than you have!" << endl;
+						cin >> withdraw;
+					}
+					if (withdraw < defacctBal) {
+						defacctBal -= withdraw;
+						cout << "You withdrew $" << withdraw << ", now you have $" << defacctBal << endl;
+					}
+					
+				}
+
+			}
+
+		}
+
+	}
+	else if (check == 2) {
+		int acctNums;
+		cout << "Enter your name: ";
+		cin >> name;
+		cout << "Welcome to Obadan Bank, " << name << ", we would be generating an account number for you.";
+		acctNums = rand() % 999999 + 100000;
+		cout << "..l o a d i n g..." << endl;
+		cout << "You new account number is: " << acctNums << ". Please enter your new pin: " << endl;
+		
+		cin >> acctPin;
+		cout << "Confirm pin again." << endl;
+		int pinConf;
+		cin >> pinConf;
+		while (acctPin != pinConf) {
+			cout << "Please make sure both pins match!" << endl;
+			cin >> pinConf;
+		}
+		if (pinConf == acctPin) {
+			cout << "Welcome to your new account, " << name << ". Would you like to start off with a deposit? Hit 1 to deposit or any other key to exit." << endl;
+			int conf;
+			cin >> conf;
+			if (conf == 1) {
+				cout << "Enter your deposit amount." << endl;
+				cin >> deposit;
+				cout << "Great! You deposited $" << deposit << "." << endl;
+			}
+			
+
+		}
+
+
+	}
+
+	cin >> yo;
+    return 0;
+}
+
